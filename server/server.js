@@ -13,7 +13,7 @@ dotenv.config();
 
 
 const port = process.env.PORT
-const allowedOrigins =['http://localhost:5173']
+const allowedOrigins =['http://localhost:5173','https://result-hub-backend.vercel.app/']
 //middlewares
 app.use(express.json());
 app.use(cors({
