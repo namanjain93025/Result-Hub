@@ -17,6 +17,7 @@ export const AppContextProvider = ({ children }) => {
             const { data } = await axios.get('/api/admin/auth');
             if (data.success) {
                 setIsAdminLogin(true);
+                navigate('/import-class-result')
             } else {
                 setIsAdminLogin(false);
             }
@@ -24,6 +25,7 @@ export const AppContextProvider = ({ children }) => {
             setIsAdminLogin(false);
         }
     }
+    
     useEffect(()=>{
      fetchAdmin();
 
