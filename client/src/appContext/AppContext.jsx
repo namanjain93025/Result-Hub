@@ -10,7 +10,7 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [isAdminLogin, setIsAdminLogin] = useState(true);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
   
   const fetchAdmin = async () => {
         try {
