@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
- 
+import {useAppContext}from '../appContext/AppContext.jsx'
 // Adjust to match your API base setup (e.g. axios instance from api/axiosInstance.js)
 // const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
  axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -16,12 +16,15 @@ const initialForm = {
 };
  
 const STUDENT_TYPES = ["Regular"];
-const Branch_Types = ["IT","CS","EI","ETC","CE","ME"];
-const Section_Types = ["A","B"];
+
+
  
 export default function ImportClassResult() {
 
-
+  const {branchOptions,sectionOptions} = useAppContext()
+  // const branchOptions = branchOptions
+  // const sectionOptions = sectionOptions
+  // const STUDENT_TYPES = STUDENT_TYPES;
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -211,7 +214,7 @@ export default function ImportClassResult() {
               onChange={handleChange}
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              {Section_Types.map((t) => (
+              {sectionOptions.map((t) => (
                 <option key={t} value={t}>
                   {t}
                 </option>
@@ -229,7 +232,7 @@ export default function ImportClassResult() {
               onChange={handleChange}
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              {Branch_Types.map((t) => (
+              {branchOptions.map((t) => (
                 <option key={t} value={t}>
                   {t}
                 </option>

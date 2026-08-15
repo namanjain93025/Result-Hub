@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useAppContext } from "../appContext/AppContext";
 import { Trophy, Medal, Loader2, AlertCircle, Search } from "lucide-react";
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
-axios.defaults.withCredentials = true;
-const BRANCHES = ["IT", "CS", "EI", "ME", "CE", "ETC"];
-const SECTIONS = ["A", "B"];
-const SEMESTERS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const currentYearShort = new Date().getFullYear() % 100;
-const BATCHES = Array.from({ length: 6 }, (_, i) => currentYearShort - i); // last 6 admission years
+const BATCHES = Array.from({ length: 6 }, (_, i) => currentYearShort -1-i); // last 6 admission years
 
 const TopPerformer = () => {
+  const {branchOptions,sectionOptions,semesterOptions,axios} = useAppContext();
+  console.log("hi ",semesterOptions);
   const [filters, setFilters] = useState({
     branch: "IT",
     section: "A",
@@ -91,7 +88,7 @@ const TopPerformer = () => {
               onChange={(e) => updateFilter("branch", e.target.value)}
               className="w-full mt-1 font-[JetBrains_Mono] text-sm bg-slate-50 rounded-lg py-2 px-2 outline-none ring-1 ring-slate-200 focus:ring-indigo-400 cursor-pointer"
             >
-              {BRANCHES.map((b) => (
+              {branchOptions.map((b) => (
                 <option key={b} value={b}>{b}</option>
               ))}
             </select>
@@ -104,7 +101,7 @@ const TopPerformer = () => {
               onChange={(e) => updateFilter("section", e.target.value)}
               className="w-full mt-1 font-[JetBrains_Mono] text-sm bg-slate-50 rounded-lg py-2 px-2 outline-none ring-1 ring-slate-200 focus:ring-indigo-400 cursor-pointer"
             >
-              {SECTIONS.map((s) => (
+              {sectionOptions.map((s) => (
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
@@ -130,7 +127,7 @@ const TopPerformer = () => {
               onChange={(e) => updateFilter("semester", Number(e.target.value))}
               className="w-full mt-1 font-[JetBrains_Mono] text-sm bg-slate-50 rounded-lg py-2 px-2 outline-none ring-1 ring-slate-200 focus:ring-indigo-400 cursor-pointer"
             >
-              {SEMESTERS.map((s) => (
+              {semesterOptions.map((s) => (
                 <option key={s} value={s}>Sem {s}</option>
               ))}
             </select>

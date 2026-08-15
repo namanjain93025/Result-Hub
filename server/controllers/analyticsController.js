@@ -3,6 +3,7 @@ import StudentResult from '../models/studentResult.js'
 
 export const getTopPerformers = async(req , res)=>{
  try {
+  
   // console.log('i am inside getTopPerformer')
     //step1 : fetch by => section,branch,semester,
     const { branch, section, batch, semester } = req.query;

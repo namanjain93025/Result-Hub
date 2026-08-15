@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {useAppContext}from '../appContext/AppContext.jsx'
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.withCredentials = true;
 import {
@@ -18,15 +19,15 @@ const ClassReport = () => {
     batch: "",
     semester: "",
   });
-
+  
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const {branchOptions, sectionOptions,batchOptions,semesterOptions} = useAppContext();
 
-  const branchOptions =  ["IT", "CS", "EI", "ME", "CE", "ETC"];
-  const sectionOptions = ["A", "B"];
-  const batchOptions = ["22", "23", "24", "25", "26"];
-  const semesterOptions = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  
+ 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
